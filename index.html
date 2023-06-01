@@ -102,6 +102,198 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+
+    //  Step 2 - Adding Buttons for Console Testing
+
+    //  Get console buttons
+    const buttons = document.querySelectorAll("button");
+    const logButton = buttons[1];
+    const errorButton = buttons[2];
+    const countButton = buttons[3];
+    const warnButton = buttons[4];
+    const assertButton = buttons[5];
+    const clearButton = buttons[6];
+    const dirButton = buttons[7];
+    const dirXMLButton = buttons[8];
+    const groupStartButton = buttons[9];
+    const groupEndButton = buttons[10];
+    const tableButton = buttons[11];
+    const startTimerButton = buttons[12];
+    const endTimerButton = buttons[13];
+    const traceButton = buttons[14];
+    const triggerGlobalErrorButton = buttons[15];
+
+    //  Console Log
+    logButton.addEventListener("click", (event) => {
+        console.log("Captain's log, Stardate 4523.3. Deep "
+            + "Space Station K-7 has issued a priority one call. "
+            + "More than an emergency, it signals near or total disaster. "
+            + "We can only assume the Klingons have attacked the station. "
+            + "We're going in armed for battle.");
+    });
+
+    //  Console Error
+    errorButton.addEventListener("click", (event) => {
+        console.error("This PC doesn’t currently meet all the system requirements for Windows 11.");
+    })
+
+    //  Console Count
+    countButton.addEventListener("click", (event) => {
+        console.count("dracula");
+    })
+
+    //  Console Warn
+    warnButton.addEventListener("click", (event) => {
+        console.warn("The dark fire will not avail you, flame of Udûn!");
+    });
+
+    //  Console Assert
+    assertButton.addEventListener("click", (event) => {
+        const aBook = true;
+        const itsCover = false;
+        const reason = "A book is not its cover.";
+        console.assert(aBook == itsCover, {aBook, itsCover, reason});
+    });
+
+    //  Console Clear
+    clearButton.addEventListener("click", (event) => {
+        console.clear();
+    });
+
+    //  Console Dir
+    dirButton.addEventListener("click", (event) => {
+        console.dir(dirButton);
+    });
+
+    //  Console dirxml
+    dirXMLButton.addEventListener("click", (event) => {
+        console.dirxml(dirXMLButton);
+    });
+
+    //  Console Group Start
+    groupStartButton.addEventListener("click", (event) => {
+        console.group("Forming");
+    });
+
+    //  Console Group End
+    groupEndButton.addEventListener("click", (event) => {
+        console.groupEnd(); //  Adjourning
+    });
+
+    //  Console Table
+    tableButton.addEventListener("click", (event) => {
+        const knightsOfTheRound = [
+            {
+                title: "King",
+                name: "Arthur"
+            },
+            {
+                title: "Sir",
+                name: "Lancelot"
+            },
+            {
+                title: "Sir",
+                name: "Gawain"
+            },
+            {
+                title: "Sir",
+                name: "Galahad"
+            }
+        ];
+        console.table(knightsOfTheRound);
+    });
+
+    //  Start Timer
+    startTimerButton.addEventListener("click", (event) => {
+        console.time("Time till clicked End Timer");
+    });
+
+    //  End Timer
+    endTimerButton.addEventListener("click", (event) => {
+        console.timeEnd("Time till clicked End Timer");
+    });
+
+    //  Console Trace
+    traceButton.addEventListener("click", (event) => {
+        const nes = () => { snes(); };
+        const snes = () => { nintendo64(); };
+        const nintendo64 = () => { gameCube(); };
+        const gameCube = () => { wii(); };
+        const wii = () => { wiiU(); };
+        const wiiU = () => { nintendoSwitch(); };
+        const nintendoSwitch = () => { console.trace(); };
+
+        nes();
+    });
+
+    //  Trigger a Global Error
+    triggerGlobalErrorButton.addEventListener("click", (event) => {
+        throw new Error("Damn it Hermes, don't press that button!");
+    });
+
+    window.onerror = (message, url, line, col, error) => {
+        console.error("We have intercepted the error:", message);
+    }
+
+    //  Step 3 - Trying Try / Catch
+
+    function stingyFunction(number) {
+        console.log("stingyFunction");
+        try {
+            if (typeof number == "number")
+            {
+                console.log(number + " is a number.");
+            }
+            else
+            {
+                throw new SyntaxError("I told you to give me a number!");
+            }
+        }
+        catch (error)
+        {
+            console.error(`${error}`);
+        }
+    }
+
+    function multiply(num1, num2)
+    {
+        try {
+            //  The inputs must both be numbers
+            if (typeof num1 == "number" && typeof num2 == "number")
+            {
+                console.log(`${num1} x ${num2} = ${num1 * num2}`);
+            }
+            else
+            {
+                throw new SyntaxError("Both arguments must be numbers.");
+            }
+        }
+        catch (error)
+        {
+            console.error(`You've an encountered a ${error}`);
+        }
+        finally {
+            //  I always want to see what the arguments were
+            console.log("The arguments were:");
+            console.table({
+                num1: num1,
+                num2: num2
+            });
+        }
+    }
+
+    stingyFunction(1);  //  No problem.
+    stingyFunction("Hello there");  //  I wouldn't try that; that function has a temper!
+
+    multiply(3, 4);     //  try -> finally
+    multiply(3, "4");   //  try -> catch -> finally
+
+    //  Step 4 - Throw and Custom Errors
+
+    
+
+
+
   </script>
 </body>
 
